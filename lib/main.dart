@@ -1,7 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project12/login_page.dart';
+import 'package:project12/setup_page.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); //Firebaseを使うときのおまじない
+  await Firebase.initializeApp(); //Firebaseを使うときのおまじない
   runApp(MyApp());
 }
 
@@ -9,36 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          color: Colors.lightBlueAccent,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('images/setup.PNG'),
-                SizedBox(
-                  height: 8,
-                ),
-                Text('Loading...'),
-                SizedBox(
-                  height: 8,
-                ),
-                ElevatedButton(
-                  child: Text('次へ'),
-                  onPressed: ()  {
-                    // ここにボタンを押した時に呼ばれるコードを書く
-                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage('Demo')),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      title: 'mUItimedia',
+      home: SetUpPage(), //アプリ起動時のページに移動
     );
   }
 }
